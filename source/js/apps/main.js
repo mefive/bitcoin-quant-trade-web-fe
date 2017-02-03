@@ -16,15 +16,12 @@ import * as actionTypes from 'config/actionTypes';
 
 import App from './App';
 import Trade from './trade';
+import Login from './Login';
 
 const store = createStore({});
 
-store.dispatch({
-  type: actionTypes.FETCH_USER
-});
-
 ReactDOM.render(
-  <Provider store={store}>
+  (<Provider store={store}>
     <Router
       history={hashHistory}
       render={applyRouterMiddleware(useScroll())}
@@ -32,39 +29,40 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRedirect to="trade" />
         <Route path="trade" component={Trade} />
+        <Route path="login" component={Login} />
       </Route>
     </Router>
-  </Provider>,
+  </Provider>),
   document.getElementById('main')
 );
 
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 
-const socket = io(
-  'http://localhost:3000',
-  {
-    query: {
-      uid: '5891c12ad87499d66b40712d'
-    }
-  }
-);
+// const socket = io(
+//   'http://localhost:3000',
+//   {
+//     query: {
+//       uid: '5891c12ad87499d66b40712d'
+//     }
+//   }
+// );
 
-socket
-  .on('connect', () => {
-    console.log('connect client');
-  });
+// socket
+//   .on('connect', () => {
+//     console.log('connect client');
+//   });
 
-socket
-  .on('ticker', data => {
-    const { ticker, user } = data;
+// socket
+//   .on('ticker', data => {
+//     const { ticker, user } = data;
 
-    store.dispatch({
-      type: actionTypes.UPDATE_TICKER,
-      payload: ticker
-    });
+//     store.dispatch({
+//       type: actionTypes.UPDATE_TICKER,
+//       payload: ticker
+//     });
 
-    store.dispatch({
-      type: actionTypes.UPDATE_USER,
-      payload: user
-    });
-  });
+//     store.dispatch({
+//       type: actionTypes.UPDATE_USER,
+//       payload: user
+//     });
+//   });

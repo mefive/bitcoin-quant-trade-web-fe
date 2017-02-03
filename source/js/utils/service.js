@@ -1,6 +1,6 @@
 import queryString from 'query-string';
 
-function handleResponse(promise) {
+function handleResponse(promise, url, method) {
   return promise
     .then(res => res.json())
     .then(({ code, data, message }) => {
@@ -8,7 +8,7 @@ function handleResponse(promise) {
         return data
       }
       else {
-        throw({ code, message });
+        throw({ code, message, url, method });
       }
     });
 }
@@ -19,8 +19,12 @@ export default {
       ? `${api}?${queryString.stringify(params)}`
       : api;
 
-    return handleResponse(fetch(url, {
-      credentials: 'include'
-    }));
+    return handleResponse(
+      fetch(url, {
+       credentials: 'include'
+      }),
+      url,
+      'get'
+    );
   }
 }

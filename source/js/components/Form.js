@@ -54,6 +54,7 @@ class FormItem extends Component {
     errorClass: 'has-error',
     onChange: () => null,
     labelWidth: 120,
+    vertical: false,
     value: ''
   }
 
@@ -64,6 +65,7 @@ class FormItem extends Component {
       required,
       onChange,
       labelWidth,
+      vertical,
       label,
       error,
       children,
@@ -82,7 +84,10 @@ class FormItem extends Component {
         data-field={name}
       >
         <label
-          style={{ width: labelWidth }}
+          style={{ width: vertical ? null : labelWidth }}
+          className={classNames(
+            { 'vertical': !!vertical }
+          )}
         >
         {required && (
           <span className="required">*</span>
@@ -93,7 +98,7 @@ class FormItem extends Component {
         <div
           className="form-control"
           style={{
-            marginLeft: labelWidth
+            marginLeft: vertical ? null : labelWidth
           }}
         >
           {React.Children.map(children, child => {
@@ -171,7 +176,8 @@ Form.create = function (defaultProps) {
           errors,
           onChange,
           dataSource,
-          labelWidth
+          labelWidth,
+          vertical
         } = this.state;
         const error = errors[keyName];
 
@@ -194,6 +200,7 @@ Form.create = function (defaultProps) {
             value: dataSource[keyName],
             error,
             labelWidth,
+            vertical,
             children: React.cloneElement(
               children,
               {

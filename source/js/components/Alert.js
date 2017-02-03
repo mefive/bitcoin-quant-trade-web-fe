@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 
 import Modal from './Modal';
 
+import 'styles/components/alert.scss';
+
 class Alert extends Component {
   static propTypes = {
     onClose: PropTypes.func,
@@ -34,6 +36,7 @@ class Alert extends Component {
         hasCloseButton={hasCloseButton}
         title={title}
         visible={visible}
+        className="alert"
       >
         <div className="dialog-content">
           {children}

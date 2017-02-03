@@ -6,12 +6,20 @@ import * as actionTypes from 'config/actionTypes';
 import * as api from 'config/api';
 
 function* fetchData() {
-  const data = yield service.get(api.USER_INFO);
+  try {
+    const data = yield service.get(api.USER_INFO);
 
-  yield put({
-    type: actionTypes.UPDATE_USER,
-    payload: data
-  })
+    yield put({
+      type: actionTypes.UPDATE_USER,
+      payload: data
+    });
+  }
+  catch (e) {
+    yield put({
+      type: actionTypes.FETCH_ERROR,
+      payload: e
+    });
+  }
 }
 
 export default function* () {
