@@ -1,0 +1,103 @@
+@import "~compass/compass/css3";
+@import "~compass/compass/utilities";
+@import "~styles/theme";
+@import "~styles/mixins/rem";
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  .modal-mask {
+    background-color: #7B7B7B;
+    background-color: rgba(12, 15, 22, 0.8);
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+  }
+
+  .modal-dialog {
+    position: absolute;
+    width: 80%;
+    left: 0;
+    top: 0;
+
+    @include border-radius($border-radius-base);
+
+    left: 50%;
+    top: 50%;
+
+    .dialog-body {
+      .dialog-content {
+        font-size: $font-size-base;
+        line-height: 1.5;
+        background-color: $white-color;
+
+        border-top-left-radius: rem(10px);
+        border-top-right-radius: rem(10px);
+
+        padding: rem(33px) rem(29px);
+        min-height: rem(135px);
+      }
+
+      .dialog-actions {
+        text-align: center;
+        font-size: $font-size-lg;
+        border-bottom-left-radius: rem(10px);
+        border-bottom-right-radius: rem(10px);
+
+        .btn {
+          padding: rem(9px) 0;
+          border: none;
+          border-radius: 0;
+        }
+
+        &[data-action-count="1"] {
+          .btn {
+            width: 100%;
+            border-bottom-left-radius: rem(10px);
+            border-bottom-right-radius: rem(10px);
+          }
+        }
+
+        &[data-action-count="2"] {
+          border-top: 1px solid #E8E8E8;
+          .btn {
+            width: 50%;
+
+            &.btn-cancel {
+              color: #B7B7B7;
+            }
+
+            &:first-child {
+              border-bottom-left-radius: rem(10px);
+            }
+
+            &:last-child {
+              border-bottom-right-radius: rem(10px);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.scale {
+    .modal-dialog {
+      transform: scale(1);
+      transition: transform .2s;
+      transition-timing-function: ease-in-out;
+    }
+
+    &.scale-enter,
+    &.scale-leave {
+      .modal-dialog {
+        transform: scale(0);
+      }
+    }
+  }
+}

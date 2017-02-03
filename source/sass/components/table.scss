@@ -1,0 +1,193 @@
+@import "~compass/compass/css3";
+@import "~compass/compass/utilities";
+@import "~styles/theme";
+
+.table-toolbar {
+  padding: 10px;
+
+  .batch-action,
+  .batch-checkbox {
+    @include inline-block();
+  }
+
+  .batch-checkbox {
+    margin-right: 20px;
+    input {
+      margin-right: 10px;
+    }
+  }
+
+  .batch-action {
+    & + .batch-action {
+      margin-left: 5px;
+    }
+    @include ellipsis();
+  }
+}
+
+.table {
+  position: relative;
+
+  &,
+  div {
+    @include box-sizing(border-box);
+  }
+
+  .no-data,
+  .loading {
+    & > div {
+      line-height: 200px;
+    }
+
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: $white-color;
+    color: $text-light-color;
+  }
+
+  table {
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    width: 100%;
+
+    th {
+      text-align: left;
+      line-height: 30px;
+      font-size: 14px;
+      color: #000;
+    }
+
+    tr.header {
+      td {
+        background-color: #F7F8F9;
+        line-height: 28px;
+        padding-left: 20px;
+      }
+    }
+
+    .empty-cell {
+      &,
+      & > div {
+        color: transparent !important;
+      }
+    }
+
+    & > tbody {
+      td {
+        font-size: 14px;
+        text-align: left;
+        padding: 10px;
+        @include ellipsis();
+      }
+
+      tr {
+        border-bottom: 1px solid $gray-color;
+      }
+    }
+
+    .detail-trigger-cell {
+      cursor: pointer;
+    }
+
+    td.detail-cell {
+      padding: 10px 20px;
+      background-color: #EEEEEE;
+
+      table {
+        padding: 0;
+
+        thead th{
+          font-size: 12px;
+          padding-left: 10px;
+        }
+
+        td {
+          @include ellipsis();
+        }
+      }
+    }
+
+    .detail {
+      text-align: left;
+      @include inline-block();
+      width: 50%;
+      vertical-align: top;
+
+      .detail-field {
+        line-height: 2;
+      }
+
+      label {
+        @include inline-block();
+      }
+    }
+
+    .action-container {
+      & + .action-container {
+        margin-top: 5px;
+      }
+    }
+
+  }
+
+  table > thead {
+    th {
+      background-color: #f4f4f4;
+      color: $text-dark-color;
+      border-top: 1px solid $gray-color;
+      border-bottom: 1px solid $gray-color;
+      line-height: 30px;
+      padding-left: 10px;
+      padding-right: 10px;
+
+      &.sortable {
+        cursor: pointer;
+
+        .icon-arrow-up,
+        .icon-arrow-down {
+          vertical-align: middle;
+          margin-left: 10px;
+          font-size: 18px;
+          margin-top: -3px;
+        }
+
+        @include user-select(none);
+      }
+
+      &:first-child {
+        & > div {
+          border-left: 1px solid #e2e2e2;
+          @include border-top-left-radius($border-radius-base);
+          @include border-bottom-left-radius($border-radius-base);
+        }
+      }
+
+      &.last-child {
+        & > div {
+          border-right: 1px solid #e2e2e2;
+          @include border-top-right-radius($border-radius-base);
+          @include border-bottom-right-radius($border-radius-base);
+        }
+      }
+    }
+  }
+
+  &.fix-header {
+    padding-top: 30px;
+
+    th {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    th div {
+      position: fixed;
+      top: 0;
+      background-color: #ECECEC;
+      padding-left: 10px;
+    }
+  }
+}
+

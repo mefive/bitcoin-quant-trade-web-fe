@@ -1,0 +1,114 @@
+@import "normalize";
+@import "~compass/compass/css3";
+@import "~compass/compass/utilities";
+
+@import "../mixins/gridSystem";
+@import "animation";
+
+@import "~styles/mixins/rem";
+
+html {
+  font-size: $rem-baseline;
+}
+
+*,
+*:before,
+*:after {
+  @include box-sizing(border-box);
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  font-weight: 300;
+  line-height: $line-height-base;
+  color: $text-color;
+  background-color: $body-background-color;
+
+  -webkit-tap-highlight-color: transparent;
+
+  &.has-modal {
+    #body-wrapper {
+      @include filter(blur(2px));
+    }
+  }
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style-type: none;
+  }
+}
+
+a, u {
+    text-decoration: none;
+}
+
+.icon {
+  display: inline-block;
+}
+
+.btn {
+  display: inline-block;
+  line-height: $line-height-base !important;
+  padding: 7px 15px;
+  border: 1px solid $gray-color;
+  @include border-radius($border-radius-base);
+  text-align: center;
+  cursor: pointer;
+  @include user-select(none);
+
+  &.disabled {
+    color: $gray-color;
+    cursor: not-allowed;
+  }
+}
+
+.btn-lg {
+  font-size: $font-size-lg !important;
+  padding: 12px 24px;
+  @include border-radius($border-radius-lg);
+}
+
+.btn-sm {
+  font-size: $font-size-sm !important;
+}
+
+.btn-primary {
+  color: $white-color !important;
+  background-color: $primary-color !important;
+}
+
+.btn-cancel {
+  background-color: $white-color !important;
+}
+
+.bg-black{
+  background: $black-color;
+}
+
+.clearfix{
+  @include clearfix();
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+@include grid-system("col-width");
+
+.scale-in {
+  animation: move-up-in .25s;
+}
+
+.scale-out {
+  animation: move-up-out .25s;
+}

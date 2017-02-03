@@ -1,0 +1,38 @@
+@import "~compass/compass/css3";
+@import "~compass/compass/utilities";
+@import "~styles/theme";
+
+@import "~styles/mixins/rem";
+
+.chart {
+  padding-bottom: 30px;
+  .chart-legend {
+    text-align: center;
+
+    @include user-select(none);
+
+    .checkbox {
+      width: rem(6px);
+      height: rem(6px);
+      margin-right: rem(8px);
+      display: inline-block;
+      vertical-align: middle;
+      background-color: #dadada;
+      border-radius: 50%;
+    }
+
+    label {
+      cursor: pointer;
+      font-size: $font-size-sm;
+
+      & + label {
+        margin-left: 30px;
+      }
+      color: #dadada;
+
+      &[data-visible="true"] {
+        color: $text-color;
+      }
+    }
+  }
+}

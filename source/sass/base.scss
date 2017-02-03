@@ -1,0 +1,48 @@
+@import "~compass/compass/css3";
+@import "~compass/animation/core";
+@import "~compass/compass/utilities";
+
+@import "~styles/mixins/rem";
+@import "~styles/theme";
+@import "~styles/core/index";
+
+#main {
+  padding: rem(10px);
+}
+
+#app {
+  .panel {
+    background-color: $white-color;
+    padding: rem(10px);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    @include border-radius(3px);
+  }
+
+  .dashboard {
+    .higher {
+      color: $red-color;
+    }
+
+    .lower {
+      color: $green-color;
+    }
+
+    .icon {
+      vertical-align: top;
+      margin-top: rem(5px);
+    }
+
+    .row {
+      padding-left: rem(10px);
+      padding-right: rem(10px);
+
+      & + .row {
+        margin-top: rem(5px);
+      }      
+    }
+
+    strong {
+      font-size: rem(18px);
+    }
+  }
+}

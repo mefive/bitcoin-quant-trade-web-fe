@@ -1,0 +1,82 @@
+@import "~styles/mixins/rem";
+// font
+$font-size-base: rem(14px);
+$font-size-sm: rem(12px);
+$font-size-lg: rem(16px);
+$font-size-xl: rem(18px);
+
+$font-weight-base: 300;
+
+$font-family: Helvetica Neue,Helvetica,Segoe UI,DejaVu Sans,Arial,PingFang SC,Hiragino Sans GB,Source Han Sans,Microsoft Yahei,Heiti SC,sans-serif;
+
+// colors
+$gray-color: #ececec;
+$gray-light-color: lighten($gray-color, 10%);
+$gray-dark-color: #C9C9C9;
+$blue-color: #0D80EC;
+$green-color: #00CA6D;
+
+$blue-color-home: #8FBCFC;
+$blue-dark-color: #0080ec;
+$white-color: #FFF;
+$black-color: #000;
+$red-color: #e62600;
+$orangle-color: #FF5B1A;
+
+$primary-color: $blue-color;
+$info-color: $blue-color;
+$error-color: $red-color;
+$succ-color: $green-color;
+
+$text-color: #646464;
+$text-dark-color: #535353;
+$text-light-color: #a0a0a0;
+
+$body-background-color: #F3F3F3;
+
+//home colors
+$footer-bg-color: #273351;
+$footer-text-color: #6e8fdb;
+$vision-color: #0581ea;
+$dashed-color: #959595;
+// text
+$line-height-base: 1.5;
+
+// box
+$border-radius-base: rem(3px);
+$border-radius-lg: rem(5px);
+$border-radius-sm: rem(1px);
+
+// container
+$container-width-base: rem(1180px);
+$container-width-sm: rem(960px);
+
+//grid system
+$grid-cols: 12;
+$grid-space: rem(10px);
+$one_col: 100% / $grid-cols;
+
+//shadows
+$button-hover-bg: #3375c7;
+$outter-shadow: rgba(#001a77, 0.4) 0 rem(3px) rem(4px) rem(0px);
+$int-shadow: rgba(#005ba7, 0.6) 0 rem(3px) rem(4px) rem(0px);
+$outter-text-shadow: rgba(#001a77, 0.4) 0 rem(3px) rem(4px);
+$pillar-shadow-left: rgba(255,255,255,0.3) 0 0 rem(6px) rem(2px);
+$inner-shadow-blue: rgba($blue-color-home, 0.6) 0 0 rem(4px) rem(1px) inset;
+
+//center position
+@mixin centerPositon($width,$height){
+  width: $width;
+  height: $height;
+  margin-left: -$width/2;
+  margin-top: -$height/2;
+}
+
+// z-index
+$z-index-sm: 1;
+$z-index-base: 2;
+$z-index-lg: 3;
+$z-index-max: 999;
+
+// page
+$header-height: 55px;
