@@ -40,6 +40,7 @@ class Dashboard extends Component {
       <div className="panel dashboard">
         <div className="row">
           用户：{user.name}
+          {user.simulate && '（模拟账户）'}
         </div>
 
         <div className="row">

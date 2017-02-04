@@ -7,6 +7,7 @@ import { toNumber } from 'utils/object';
 const initialState = {
   name: '',
   uid: 0,
+  simulate: false,
   asset: {
     net: 0,
     total: 0
@@ -25,7 +26,7 @@ const initialState = {
 
 export default handleActions({
   [actionTypes.UPDATE_USER]: (state, { payload }) =>
-    ({ ...state, ...pick(payload, ['name', 'uid']) }),
+    ({ ...state, ...pick(payload, ['name', 'uid', 'simulate']) }),
 
   [actionTypes.UPDATE_USER_INFO]: (state, { payload }) => {
     return {

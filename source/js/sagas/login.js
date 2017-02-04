@@ -37,10 +37,12 @@ function* login({ payload }) {
     redirect = constants.PATHNAME_TRADE;
   }
 
+  console.log(pick(user, ['name', 'apiKey', 'secretKey', 'simulate']))
+
   try {
     user = yield service.get(
       api.LOGIN,
-      { ...pick(user, ['name', 'apiKey', 'secretKey']) }
+      { ...pick(user, ['name', 'apiKey', 'secretKey', 'simulate']) }
     );
   }
   catch (e) {

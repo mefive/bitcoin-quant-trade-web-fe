@@ -50,6 +50,15 @@ const LoginForm = Form.create(
               <Input type="text" />
             </Form.Item>
           )}
+
+          {form.getFieldDecorator(
+            <Form.Item
+              label="模拟"
+              keyName="simulate"
+            >
+              <Input type="checkbox" />
+            </Form.Item>
+          )}
         </Form>
 
         <div className="actions">

@@ -7,7 +7,8 @@ const initialState = {
     name: '',
     uid: '',
     apiKey: '',
-    secretKey: ''
+    secretKey: '',
+    simulate: false
   }
 };
 

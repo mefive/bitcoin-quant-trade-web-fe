@@ -5,8 +5,8 @@ var config = require('./config');
 var buildRoot = 'dev';
 
 module.exports = merge(base, {
-  // devtool: 'source-map',
-  devtool: '#eval-source-map',
+  devtool: 'source-map',
+  // devtool: '#eval-source-map',
   devServer: {
     port: 1996,
     hot: true,
