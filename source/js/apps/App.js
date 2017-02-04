@@ -98,13 +98,26 @@ class App extends Component {
         })}
         visible={!!error}
       >
-        {error && (
-          <span>
-            <strong>{error.method}</strong>{`  ${error.url}`}
-            <br />
-            {error.message}
-          </span>
-        )}
+        {(() => {
+          if (error) {
+            if (typeof error === 'string') {
+              return (
+                <span>
+                  {error}
+                </span>
+              );
+            }
+            else {
+              return (
+                <span>
+                  <strong>{error.method}</strong>{`  ${error.url}`}
+                  <br />
+                  {error.message}
+                </span>
+              );
+            }
+          }
+        })()}
       </Alert>
     )
   }

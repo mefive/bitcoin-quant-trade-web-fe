@@ -9,20 +9,25 @@ import service from 'utils/service';
 function* fetchData({ payload }) {
   const { name } = payload;
 
-  try {
-    const user = yield service.get(api.USER, { name });
+  let user;
 
-    yield put({
-      type: actionTypes.UPDATE_LOGIN_USER,
-      payload: user
-    });
+  try {
+    user = yield service.get(api.USER, { name });
   }
   catch (e) {
     yield put({
-      type: actionTypes.FETCH_ERROR,
-      payload: e
+      type: actionTypes.PUSH_MODAL,
+      payload: {
+        modalType: constants.MODAL_TYPE_ERROR,
+        data: '没有该用户'
+      }
     });
   }
+
+  yield put({
+    type: actionTypes.UPDATE_LOGIN_USER,
+    payload: user
+  });
 }
 
 function* login({ payload }) {
