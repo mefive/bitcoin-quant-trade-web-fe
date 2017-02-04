@@ -1,5 +1,13 @@
 @import "~styles/theme";
 
-#login {
+body {
   background-color: $white-color;
+}
+
+#login {
+  padding: 20px;
+  .actions {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 }

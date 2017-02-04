@@ -5,6 +5,7 @@ import { toNumber } from 'utils/object';
 
 const initialState = {
   name: '',
+  uid: 0,
   asset: {
     net: 0,
     total: 0
