@@ -46,20 +46,15 @@ class App extends Component {
     const { router, user: { uid }, dispatch } = this.props;
 
     if (uid) {
-      if (pathname === constants.PATHNAME_LOGIN) {
-        router.push(constants.PATHNAME_TRADE);
-      }
-      else {
-        this.setState({ active: true });
-      }
+      this.handleHasUser(pathname);
 
       return;
     }
 
     try {
-      const data = await service.get(api.USER_INFO);
+      const data = await service.get(api.CURRENT_USER);
 
-      this.setState({ active: true });
+      this.handleHasUser(pathname);
 
       dispatch({
         type: actionTypes.UPDATE_USER,
@@ -73,6 +68,15 @@ class App extends Component {
       else {
         this.setState({ active: true });
       }
+    }
+  }
+
+  handleHasUser(pathname) {
+    if (pathname === constants.PATHNAME_LOGIN) {
+      this.props.router.push(constants.PATHNAME_TRADE);
+    }
+    else {
+      this.setState({ active: true });
     }
   }
 

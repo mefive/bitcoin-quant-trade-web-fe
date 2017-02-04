@@ -39,6 +39,10 @@ class Dashboard extends Component {
     return (
       <div className="panel dashboard">
         <div className="row">
+          用户：{user.name}
+        </div>
+
+        <div className="row">
           当前价格：
           <strong
             className={classNames({

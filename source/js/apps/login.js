@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Form from 'components/Form';
 import Input from 'components/Input';
+
+import * as actionTypes from 'config/actionTypes';
 
 import 'styles/apps/login.scss';
 
@@ -9,7 +12,11 @@ const LoginForm = Form.create(
   { vertical: true }
 )(React.createClass({
   render() {
-    const { form, onSubmit = () => null } = this.props;
+    const {
+      form,
+      onSubmit = () => null,
+      onGetKey = () => null
+    } = this.props;
 
     return (
       <div>
@@ -48,13 +55,16 @@ const LoginForm = Form.create(
         <div className="actions">
           <div
             className="btn btn-primary"
-            onClick={() => {
-              if (!form.validate()) {
-                onSubmit();
-              }
-            }}
+            onClick={onSubmit}
           >
             登录
+          </div>
+
+          <div
+            className="btn btn-primary"
+            onClick={onGetKey}
+          >
+            获取Key
           </div>
         </div>
       </div>
@@ -67,12 +77,16 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      dataSource: {
-        name: '',
-        apiKey: '',
-        secretKey: ''
-      }
-    };
+      dataSource: { ...this.props.user }
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user !== this.props.user) {
+      this.setState({
+        dataSource: { ...nextProps.user }
+      });
+    }
   }
 
   render() {
@@ -86,8 +100,20 @@ class Login extends Component {
             dataSource={dataSource}
             onChange={(key, value) => this.setState({
               dataSource: {
-                ...this.state.dataSource,
+                ...dataSource,
                 [key]: value
+              }
+            })}
+            onGetKey={() => this.props.dispatch({
+              type: actionTypes.FETCH_LOGIN_USER,
+              payload: {
+                name: dataSource.name
+              }
+            })}
+            onSubmit={() => this.props.dispatch({
+              type: actionTypes.LOGIN,
+              payload: {
+                user: dataSource
               }
             })}
           />
@@ -97,4 +123,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  const { login } = state;
+
+  return {
+    user: login.user
+  };
+}
+
+export default connect(mapStateToProps)(Login);

@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import pick from 'lodash/pick';
 
 import * as actionTypes from 'config/actionTypes';
 import { toNumber } from 'utils/object';
@@ -23,7 +24,10 @@ const initialState = {
 }
 
 export default handleActions({
-  [actionTypes.UPDATE_USER]: (state, { payload }) => {
+  [actionTypes.UPDATE_USER]: (state, { payload }) =>
+    ({ ...state, ...pick(payload, ['name', 'uid']) }),
+
+  [actionTypes.UPDATE_USER_INFO]: (state, { payload }) => {
     return {
       ...state,
       asset: toNumber(payload.asset),

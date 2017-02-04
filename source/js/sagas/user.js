@@ -10,7 +10,7 @@ function* fetchData() {
     const data = yield service.get(api.USER_INFO);
 
     yield put({
-      type: actionTypes.UPDATE_USER,
+      type: actionTypes.UPDATE_USER_INFO,
       payload: data
     });
   }
@@ -23,5 +23,5 @@ function* fetchData() {
 }
 
 export default function* () {
-  yield takeLatest(actionTypes.FETCH_USER, fetchData);
+  yield takeLatest(actionTypes.FETCH_USER_INFO, fetchData);
 }
