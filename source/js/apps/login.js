@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 
 import Form from 'components/Form';
 import Input from 'components/Input';
+import Alert from 'components/Alert';
 
 import * as actionTypes from 'config/actionTypes';
+import * as constants from 'config/constants';
 
 import 'styles/apps/login.scss';
 
@@ -15,7 +17,6 @@ const LoginForm = Form.create(
     const {
       form,
       onSubmit = () => null,
-      onGetKey = () => null
     } = this.props;
 
     return (
@@ -33,30 +34,11 @@ const LoginForm = Form.create(
 
           {form.getFieldDecorator(
             <Form.Item
-              label="ApiKey"
+              label="密码"
               required
-              keyName="apiKey"
+              keyName="password"
             >
-              <Input type="text" />
-            </Form.Item>
-          )}
-
-          {form.getFieldDecorator(
-            <Form.Item
-              label="SecretKey"
-              required
-              keyName="secretKey"
-            >
-              <Input type="text" />
-            </Form.Item>
-          )}
-
-          {form.getFieldDecorator(
-            <Form.Item
-              label="模拟"
-              keyName="simulate"
-            >
-              <Input type="checkbox" />
+              <Input type="password" />
             </Form.Item>
           )}
         </Form>
@@ -64,16 +46,14 @@ const LoginForm = Form.create(
         <div className="actions">
           <div
             className="btn btn-primary"
-            onClick={onSubmit}
+            onClick={() => {
+              if (form.validate()) {
+                console.log('onSubmit');
+                onSubmit();
+              }
+            }}
           >
             登录
-          </div>
-
-          <div
-            className="btn btn-primary"
-            onClick={onGetKey}
-          >
-            获取Key
           </div>
         </div>
       </div>
@@ -86,20 +66,24 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      dataSource: { ...this.props.user }
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user !== this.props.user) {
-      this.setState({
-        dataSource: { ...nextProps.user }
-      });
-    }
+      dataSource: {
+        name: '',
+        password: ''
+      }
+    };
   }
 
   render() {
     const { dataSource } = this.state;
+    const { modal } = this.props;
+
+    let code = 0;
+
+    if (modal
+      && modal.modalType === constants.MODAL_TYPE_LOGIN_ERROR
+    ) {
+      code = modal.data;
+    }
 
     return (
       <div id="login">
@@ -113,12 +97,6 @@ class Login extends Component {
                 [key]: value
               }
             })}
-            onGetKey={() => this.props.dispatch({
-              type: actionTypes.FETCH_LOGIN_USER,
-              payload: {
-                name: dataSource.name
-              }
-            })}
             onSubmit={() => this.props.dispatch({
               type: actionTypes.LOGIN,
               payload: {
@@ -127,16 +105,42 @@ class Login extends Component {
             })}
           />
         </div>
+        <Alert
+          onClose={() => {
+            if (code === 500) {
+              this.setState({
+                dataSource: {
+                  ...this.state.dataSource,
+                  password: ''
+                }
+              });
+            }
+
+            this.props.dispatch({
+              type: actionTypes.POP_MODAL
+            });
+          }}
+          visible={!!code}
+        >
+          {!!code && (() => {
+            if (code === 404) {
+              return '没有该用户';
+            }
+            else if (code === 500) {
+              return '密码错误';
+            }
+          })()}
+        </Alert>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const { login } = state;
+  const { modal } = state;
 
   return {
-    user: login.user
+    modal: modal.current
   };
 }
 

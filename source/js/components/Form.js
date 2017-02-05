@@ -222,7 +222,8 @@ Form.create = function (defaultProps) {
       }
 
       validate(fields) {
-        const { dataSource, errors } = this.state;
+        const { dataSource } = this.state;
+        const errors = {};
 
         if (typeof fields === 'string') {
           fields = [fields];
@@ -256,7 +257,9 @@ Form.create = function (defaultProps) {
               error.push('格式不正确');
             }
 
-            errors[keyName] = error.join(',');
+            if (errors.length > 0) {
+              errors[keyName] = error.join(',');
+            }
           }
           else {
             delete errors[keyName];
@@ -264,6 +267,10 @@ Form.create = function (defaultProps) {
         });
 
         this.setState({ errors });
+
+        console.log(errors);
+
+        return Object.keys(errors).length === 0;
       }
 
       render() {

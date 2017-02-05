@@ -52,7 +52,7 @@ class App extends Component {
     }
 
     try {
-      const data = await service.get(api.CURRENT_USER);
+      const data = await service.get(api.USER);
 
       this.handleHasUser(pathname);
 
