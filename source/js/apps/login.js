@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import Form from 'components/Form';
 import Input from 'components/Input';
@@ -55,6 +56,10 @@ const LoginForm = Form.create(
           >
             登录
           </div>
+
+          <Link>
+            注册
+          </Link>
         </div>
       </div>
     )
