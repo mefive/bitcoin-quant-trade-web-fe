@@ -14,8 +14,11 @@ const RegisterForm = Form.create({
   render() {
     const {
       form,
-      onSubmit = () => null
+      onSubmit = () => null,
+      dataSource
     } = this.props;
+
+    const { simulate } = dataSource;
 
     return (
       <div>
@@ -40,7 +43,7 @@ const RegisterForm = Form.create({
             </Form.Item>
           )}
 
-          {form.getFieldDecorator(
+          {!simulate && form.getFieldDecorator(
             <Form.Item
               label="Api Key"
               required
@@ -50,7 +53,7 @@ const RegisterForm = Form.create({
             </Form.Item>
           )}
 
-          {form.getFieldDecorator(
+          {!simulate && form.getFieldDecorator(
             <Form.Item
               label="Secret Key"
               required
@@ -74,7 +77,13 @@ const RegisterForm = Form.create({
           <div
             className="btn btn-primary"
             onClick={() => {
-              if (form.validate()) {
+              let fileds = ['name', 'password'];
+
+              if (!simulate) {
+                fileds = fileds.concat(['apiKey', 'secretKey']);
+              }
+
+              if (form.validate(fileds)) {
                 onSubmit();
               }
             }}
@@ -93,10 +102,10 @@ class Register extends Component {
 
     this.state = {
       dataSource: {
-        name: '18618218739',
-        password: '123123',
-        apiKey: '3cf9c43e-20d4-4b10-aab7-b29d5a3daef5',
-        secretKey: 'E96CA99BA260561837875C99355D3D55',
+        name: '',
+        password: '',
+        apiKey: '',
+        secretKey: '',
         simulate: false
       }
     };
