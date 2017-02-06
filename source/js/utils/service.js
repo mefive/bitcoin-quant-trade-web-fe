@@ -26,5 +26,19 @@ export default {
       url,
       'get'
     );
+  },
+
+  post(api, params) {
+    return handleResponse(
+      fetch(api, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params)
+      }),
+      api,
+      'post'
+    );
   }
 }

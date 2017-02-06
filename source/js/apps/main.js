@@ -13,10 +13,12 @@ import Fastclick from 'fastclick';
 
 import createStore from 'createStore';
 import * as actionTypes from 'config/actionTypes';
+import * as constants from 'config/constants';
 
 import App from './App';
 import Trade from './trade';
 import Login from './Login';
+import Register from './Register';
 
 const store = createStore({});
 
@@ -30,6 +32,7 @@ ReactDOM.render(
         <IndexRedirect to="trade" />
         <Route path="trade" component={Trade} />
         <Route path="login" component={Login} />
+        <Route path="register" component={Register} />
       </Route>
     </Router>
   </Provider>),

@@ -11,25 +11,33 @@ import Alert from 'components/Alert';
 
 import 'styles/base.scss';
 
+function needCheckAuth(pathname) {
+  return [
+    constants.PATHNAME_LOGIN,
+    constants.PATHNAME_TRADE
+  ].indexOf(pathname) !== -1
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.checkAuth(this.props.location.pathname);
+    const pathname = this.props.location.pathname;
+    let active = true;
 
-    this.state = {
-      active: false
-    };
+    if (needCheckAuth(pathname)) {
+      this.checkAuth(pathname);
+      active = false;
+    }
+
+    this.state = { active }
   }
 
   componentWillReceiveProps(nextProps) {
     const { routeTo, location: { pathname } } = nextProps;
 
     if (this.props.location.pathname !== pathname) {
-      if ([
-        constants.PATHNAME_LOGIN,
-        constants.PATHNAME_TRADE
-      ].indexOf(pathname) !== -1) {
+      if (needCheckAuth(pathname)) {
         this.setState({ active: false });
         this.checkAuth(pathname);
       }

@@ -49,7 +49,6 @@ const LoginForm = Form.create(
             className="btn btn-primary"
             onClick={() => {
               if (form.validate()) {
-                console.log('onSubmit');
                 onSubmit();
               }
             }}
@@ -57,7 +56,7 @@ const LoginForm = Form.create(
             登录
           </div>
 
-          <Link>
+          <Link to={constants.PATHNAME_REGISTER}>
             注册
           </Link>
         </div>

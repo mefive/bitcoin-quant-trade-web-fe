@@ -20,7 +20,7 @@ function getErrorMessage({ code, message, url, method }) {
 
   const globalError = globalErrors[code];
 
-  if (globalError) {
+  if (globalError && !message) {
     message = globalError;
   }
 

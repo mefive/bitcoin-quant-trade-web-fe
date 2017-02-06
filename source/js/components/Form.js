@@ -257,7 +257,7 @@ Form.create = function (defaultProps) {
               error.push('格式不正确');
             }
 
-            if (errors.length > 0) {
+            if (error.length > 0) {
               errors[keyName] = error.join(',');
             }
           }
@@ -267,8 +267,6 @@ Form.create = function (defaultProps) {
         });
 
         this.setState({ errors });
-
-        console.log(errors);
 
         return Object.keys(errors).length === 0;
       }
