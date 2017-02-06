@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+/* eslint-disable no-unused-vars */
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   applyRouterMiddleware,
@@ -23,7 +24,7 @@ import Register from './Register';
 const store = createStore({});
 
 ReactDOM.render(
-  (<Provider store={store}>
+  <Provider store={store}>
     <Router
       history={hashHistory}
       render={applyRouterMiddleware(useScroll())}
@@ -35,6 +36,6 @@ ReactDOM.render(
         <Route path="register" component={Register} />
       </Route>
     </Router>
-  </Provider>),
+  </Provider>,
   document.getElementById('main')
 );

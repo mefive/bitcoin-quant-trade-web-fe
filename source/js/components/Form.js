@@ -30,7 +30,7 @@ class Form extends Component {
         )}
       >
         <div className="form-group-container">
-          {this.props.children}
+          {children}
         </div>
       </div>
     );
@@ -86,7 +86,7 @@ class FormItem extends Component {
         <label
           style={{ width: vertical ? null : labelWidth }}
           className={classNames(
-            { 'vertical': !!vertical }
+            { vertical: !!vertical }
           )}
         >
         {required && (
@@ -101,19 +101,18 @@ class FormItem extends Component {
             marginLeft: vertical ? null : labelWidth
           }}
         >
-          {React.Children.map(children, child => {
+          {React.Children.map(children, (child) => {
             if (isHasValue(child.type)) {
               return React.cloneElement(
                 child,
                 {
-                  onChange: value => onChange(keyName, value),
+                  onChange: newValue => onChange(keyName, newValue),
                   value
                 }
-              )
+              );
             }
-            else {
-              return child;
-            }
+
+            return child;
           })}
         </div>
 
@@ -140,14 +139,14 @@ class FormItem extends Component {
           </div>
         )}
       </div>
-    )
+    );
   }
 }
 
 Form.Item = FormItem;
 
-Form.create = function (defaultProps) {
-  return WrappedComponent => {
+Form.create = function create(defaultProps) {
+  return (WrappedComponent) => {
     class DecoratedForm extends Component {
       constructor(props) {
         super(props);
@@ -161,7 +160,7 @@ Form.create = function (defaultProps) {
           errors: {},
           ...defaultProps,
           ...props
-        }
+        };
       }
 
       componentWillReceiveProps(nextProps) {
@@ -229,7 +228,7 @@ Form.create = function (defaultProps) {
           fields = [fields];
         }
 
-        Object.keys(this.rules).forEach(keyName => {
+        Object.keys(this.rules).forEach((keyName) => {
           const value = dataSource[keyName];
 
           const { required, maxLength, minLength, regex }
@@ -245,11 +244,11 @@ Form.create = function (defaultProps) {
             }
             else {
               if (value.length > maxLength) {
-                error.push('大于' + maxLength + '个字符');
+                error.push(`大于${maxLength}个字符`);
               }
 
               if (value.length < minLength) {
-                error.push('小于' + minLength + '个字符');
+                error.push(`小于${minLength}个字符`);
               }
             }
 
@@ -287,7 +286,7 @@ Form.create = function (defaultProps) {
     }
 
     return DecoratedForm;
-  }
-}
+  };
+};
 
 export default Form;

@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
-import Modal from './Modal';
-
 import 'styles/components/alert.scss';
+import Modal from './Modal';
 
 class Alert extends Component {
   static propTypes = {

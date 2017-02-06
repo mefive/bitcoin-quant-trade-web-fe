@@ -20,14 +20,13 @@ module.exports = merge({
   }, config.getEntry()),
 
   module: {
-    // preLoaders: [
-    //   { 
-    //     test: /\.js$/, 
-    //     loader: "eslint-loader", 
-    //     exclude: /node_modules/,
-    //     include: path.resolve(__dirname, './source/js/entities/App.js')
-    //   }
-    // ],
+    preLoaders: [
+      { 
+        test: /\.js$/, 
+        loader: "eslint-loader", 
+        exclude: /node_modules/
+      }
+    ],
     loaders: [
       { test: /\.json$/, loader: 'json' },
       {

@@ -15,7 +15,7 @@ function needCheckAuth(pathname) {
   return [
     constants.PATHNAME_LOGIN,
     constants.PATHNAME_TRADE
-  ].indexOf(pathname) !== -1
+  ].indexOf(pathname) !== -1;
 }
 
 class App extends Component {
@@ -30,7 +30,7 @@ class App extends Component {
       active = false;
     }
 
-    this.state = { active }
+    this.state = { active };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -69,7 +69,7 @@ class App extends Component {
         payload: data
       });
     }
-    catch(e) {
+    catch (e) {
       if (pathname !== constants.PATHNAME_LOGIN) {
         router.push(constants.PATHNAME_LOGIN);
       }
@@ -115,19 +115,20 @@ class App extends Component {
                 </span>
               );
             }
-            else {
-              return (
-                <span>
-                  <strong>{error.method}</strong>{`  ${error.url}`}
-                  <br />
-                  {error.message}
-                </span>
-              );
-            }
+
+            return (
+              <span>
+                <strong>{error.method}</strong>{`  ${error.url}`}
+                <br />
+                {error.message}
+              </span>
+            );
           }
+
+          return null;
         })()}
       </Alert>
-    )
+    );
   }
 
   render() {
@@ -135,7 +136,7 @@ class App extends Component {
       <div
         id="app"
         className={classNames(
-          { 'hidden': !this.state.active }
+          { hidden: !this.state.active }
         )}
       >
         {this.props.children}

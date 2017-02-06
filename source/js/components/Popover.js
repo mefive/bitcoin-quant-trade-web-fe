@@ -57,7 +57,7 @@ class Popover extends Component {
 
     switch (placement) {
       case 'top': {
-        left = anchorRect.left + (anchorWidth / 2) - containerRect.left;
+        left = (anchorRect.left + (anchorWidth / 2)) - containerRect.left;
         marginLeft = -(popoverWidth / 2);
         marginTop = -offset;
         top = anchorRect.top - popoverHeight - 0 - containerRect.top;
@@ -65,7 +65,7 @@ class Popover extends Component {
       }
 
       case 'topRight': {
-        left = anchorRect.left + anchorWidth - popoverWidth - containerRect.left;
+        left = (anchorRect.left + anchorWidth) - popoverWidth - containerRect.left;
         marginTop = -offset;
         top = anchorRect.top - popoverHeight - containerRect.top;
         break;
@@ -79,10 +79,10 @@ class Popover extends Component {
       }
 
       case 'bottom': {
-        left = anchorRect.left + (anchorWidth / 2) - containerRect.left;
+        left = (anchorRect.left + (anchorWidth / 2)) - containerRect.left;
         marginLeft = -(popoverWidth / 2);
         marginTop = offset;
-        top = anchorRect.top + anchorHeight - containerRect.top;
+        top = (anchorRect.top + anchorHeight) - containerRect.top;
         break;
       }
 
@@ -90,7 +90,7 @@ class Popover extends Component {
         left = anchorRect.left + anchorWidth + offset;
         marginLeft = 0;
         marginTop = 0;
-        top = anchorRect.top - containerRect.top - (popoverHeight / 2) + (anchorHeight / 2);
+        top = (anchorRect.top - containerRect.top - (popoverHeight / 2)) + (anchorHeight / 2);
         break;
       }
 
@@ -106,9 +106,11 @@ class Popover extends Component {
         left = anchorRect.left - offset - popoverWidth - containerRect.left;
         marginLeft = 0;
         marginTop = 0;
-        top = anchorRect.top - containerRect.top - (popoverHeight / 2) + (anchorHeight / 2);
+        top = (anchorRect.top - containerRect.top - (popoverHeight / 2)) + (anchorHeight / 2);
         break;
       }
+
+      default: break;
     }
 
     this.setState({

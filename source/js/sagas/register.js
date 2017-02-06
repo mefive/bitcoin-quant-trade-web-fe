@@ -1,4 +1,4 @@
-import { call, put, fork, takeLatest, select } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 import pick from 'lodash/pick';
 
 import * as actionTypes from 'config/actionTypes';

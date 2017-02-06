@@ -37,14 +37,14 @@ class Animate extends Component {
     };
   }
 
-  componentDidMount() {
-    // setTimeout(
-    //   () => this.setState({
-    //     status: ANIMATED,
-    //   }),
-    //   this.props.enterDuration
-    // );
-  }
+  // componentDidMount() {
+  //   // setTimeout(
+  //   //   () => this.setState({
+  //   //     status: ANIMATED,
+  //   //   }),
+  //   //   this.props.enterDuration
+  //   // );
+  // }
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.children && this.props.children) {
@@ -93,7 +93,7 @@ class Animate extends Component {
     const { status } = this.state;
 
     let children = this.props.children;
-    let className = [];
+    const className = [];
 
     if (status === LEAVING) {
       children = this.state.children;

@@ -14,6 +14,8 @@ import 'styles/apps/login.scss';
 const LoginForm = Form.create(
   { vertical: true }
 )(React.createClass({
+  displayName: 'LoginForm',
+
   render() {
     const {
       form,
@@ -61,9 +63,9 @@ const LoginForm = Form.create(
           </Link>
         </div>
       </div>
-    )
+    );
   }
-}))
+}));
 
 class Login extends Component {
   constructor(props) {
@@ -133,6 +135,8 @@ class Login extends Component {
             else if (code === 500) {
               return '密码错误';
             }
+
+            return null;
           })()}
         </Alert>
       </div>

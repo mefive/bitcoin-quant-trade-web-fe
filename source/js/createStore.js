@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore } from 'redux';
-import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga';
 
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
