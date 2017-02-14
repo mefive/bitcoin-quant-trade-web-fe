@@ -71,7 +71,7 @@ class Modal extends Component {
         enterClassName="enter"
         enterDuration={200}
         leaveClassName="leave"
-        enterDuration={200}
+        leaveDuration={200}
       >
       {visible && (
         <Portal>
