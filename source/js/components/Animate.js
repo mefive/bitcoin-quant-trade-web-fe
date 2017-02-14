@@ -115,10 +115,7 @@ class Animate extends Component {
     return React.cloneElement(
       children,
       {
-        className: classNames(
-          children.props.className,
-          ...className
-        )
+        className: classNames(...className)
       }
     );
   }
