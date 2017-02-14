@@ -25,6 +25,7 @@
     width: 80%;
     left: 0;
     top: 0;
+    opacity: 0;
 
     @include border-radius($border-radius-base);
 
@@ -85,20 +86,12 @@
     }
   }
 
-  &.scale {
+  &.active {
     .modal-dialog {
-      transform: scale(1);
-      transition: transform .2s;
-      transition-timing-function: ease-in-out;
-    }
-
-    &.scale-enter,
-    &.scale-leave {
-      .modal-dialog {
-        transform: scale(0);
-      }
+      opacity: 1;
     }
   }
+  
 
   &.enter {
     .modal-dialog {
